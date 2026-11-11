@@ -1,0 +1,45 @@
+{
+  "name": "liocode",
+  "version": "0.1.0",
+  "description": "A local-first coding agent workspace with project folders, local tools, and Puter.js models.",
+  "type": "module",
+  "main": "server.js",
+  "bin": {
+    "liocode": "./liocode"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check agent.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "coding-agent",
+    "local-first",
+    "puter",
+    "puterjs",
+    "developer-tools",
+    "ai",
+    "workspace"
+  ],
+  "author": "Lionel SISSO",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1i0ne1/lioCode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/1i0ne1/lioCode/issues"
+  },
+  "homepage": "https://github.com/1i0ne1/lioCode#readme",
+  "files": [
+    "liocode",
+    "server.js",
+    "agent.js",
+    "index.html",
+    "setup.html",
+    "README.md",
+    "LICENSE"
+  ]
+}

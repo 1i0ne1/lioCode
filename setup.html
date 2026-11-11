@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free, Unlimited Qwen API</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/js/highlightjs/styles/vs.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Puter Developer">
+    <meta name="application-name" content="Puter Developer">
+    <meta name="apple-mobile-web-app-title" content="Puter Developer">
+
+    <meta name="description"
+        content="Learn how to use Puter.js to access all Qwen family models—from general chat to instruction‑tuned, vision, code, and image generation models—completely free, without any API keys or usage restrictions.">
+    <meta property="og:title" content="Free, Unlimited Qwen API">
+    <meta property="og:description"
+        content="Learn how to use Puter.js to access all Qwen family models—from general chat to instruction‑tuned, vision, code, and image generation models—completely free, without any API keys or usage restrictions.">
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://developer.puter.com/card.png">
+    <meta property="og:url" content="https://developer.puter.com/tutorials/free-unlimited-qwen-api/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HeyPuter">
+    <meta name="twitter:creator" content="@HeyPuter">
+    <meta name="twitter:title" content="Free, Unlimited Qwen API">
+    <meta name="twitter:description"
+        content="Learn how to use Puter.js to access all Qwen family models—from general chat to instruction‑tuned, vision, code, and image generation models—completely free, without any API keys or usage restrictions.">
+    <meta name="twitter:image" content="https://developer.puter.com/card.png">
+    <link rel="canonical" href="https://developer.puter.com/tutorials/free-unlimited-qwen-api/">
+    <meta itemprop="dateModified" content="2026-11-10" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Free, Unlimited Qwen API",
+        "description": "Learn how to use Puter.js to access all Qwen family models—from general chat to instruction‑tuned, vision, code, and image generation models—completely free, without any API keys or usage restrictions.",
+        "image": "https://developer.puter.com/card.png",
+        "dateModified": "2026-11-10",
+        "author": [{
+            "@type": "Person",
+            "name": "Nariman Jelveh",
+            "url": "https://developer.puter.com/author/jelveh/"
+        }, {
+            "@type": "Person",
+            "name": "Reynaldi Chernando",
+            "url": "https://developer.puter.com/author/reynaldichernando/"
+        }],
+        "publisher": {
+            "@type": "Organization",
+            "name": "Puter Technologies Inc.",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://assets.puter.site/puter-logo.png"
+            }
+        },
+        "articleSection": "Web Development",
+        "keywords": "qwen, api, puter.js, free, unlimited, qwen3.8-max-prime, qwen3.8-max, qwen3.8-flash, qwen3.7-flash, qwen3.7-plus, qwen3.7-max, qwen3.5, qwen3.6-plus, qwen2, qwen3, qwen-vl, qwen‑coder, qwen-image",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://developer.puter.com/tutorials/free-unlimited-qwen-api/"
+        }
+    }
+    </script>
+    <script defer data-domain="developer.puter.com" src="https://plausible.io/js/script.js"></script>
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+            c[a]("identify", (sessionStorage.cid ??= crypto.randomUUID()));
+        })(window, document, "clarity", "script", "u1ni6xguh1");
+    </script>
+    <!-- X conversion tracking base code -->
+    <script>
+        !function (e, t, n, s, u, a) {
+            e.twq || (s = e.twq = function () {
+                s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+            }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = 'https://static.ads-twitter.com/uwt.js',
+                a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+        }(window, document, 'script');
+        twq('config', 'psybk');
+    </script>
+    <!-- End X conversion tracking base code -->
+</head>
+
+<body class="page-tut">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3Csvg%20x%3D%220px%22%20y%3D%220px%22%20width%3D%2248px%22%20height%3D%2248px%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20stroke-width%3D%222%22%20transform%3D%22matrix(0%2C%201%2C%20-1%2C%200%2C%2047.999504%2C%200.000014)%22%3E%3Cpolyline%20points%3D%2239%2024%2025%2024%2025%2028%22%20fill%3D%22none%22%20stroke%3D%22%23444444%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Cpolyline%20points%3D%2235.879%2010.121%2032%2014%2025%2014%2025%2018%22%20fill%3D%22none%22%20stroke%3D%22%23444444%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Cpath%20d%3D%22M13%2C26a10.29%2C10.29%2C0%2C0%2C1-7.2-3%22%20fill%3D%22none%22%20stroke%3D%22%23444444%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Cpath%20d%3D%22M17%2C31.6A5.826%2C5.826%2C0%2C0%2C1%2C13%2C26a5.731%2C5.731%2C0%2C0%2C1%2C2-4.4%22%20fill%3D%22none%22%20stroke%3D%22%23444444%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Cpath%20d%3D%22M35.879%2C37.879%2C32%2C34H25v2A9.9%2C9.9%2C0%2C0%2C1%2C15%2C46%2C9.9%2C9.9%2C0%2C0%2C1%2C5%2C36a9.058%2C9.058%2C0%2C0%2C1%2C.6-3.2A5.627%2C5.627%2C0%2C0%2C1%2C3%2C28a5.888%2C5.888%2C0%2C0%2C1%2C2.8-5A9.994%2C9.994%2C0%2C0%2C1%2C3%2C16%2C9.9%2C9.9%2C0%2C0%2C1%2C13%2C6h.4A5.826%2C5.826%2C0%2C0%2C1%2C19%2C2a5.893%2C5.893%2C0%2C0%2C1%2C6%2C6%22%20fill%3D%22none%22%20stroke%3D%22%23444444%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%228%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%23444444%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20data-color%3D%22color-2%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2224%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%23444444%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20data-color%3D%22color-2%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2240%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%23444444%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20data-color%3D%22color-2%22%20stroke-linejoin%3D%22miter%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                    alt="Puter.js" height="30">
+            </a>
+            <div class="nav-actions">
+                <a class="nav-builder"
+                    href="https://builder.puter.com/?utm_source=developer.puter.com&utm_medium=referral&utm_campaign=developer_navbar"
+                    target="_blank" rel="noopener"
+                    data-tooltip="Make apps powered by Puter.js with our AI app builder"><svg class="nav-builder-icon"
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="1 0.5 22 22" fill="none"
+                        stroke="currentColor" stroke-width="1.83" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M15.5 2Q16.28 7.72 22 8.5Q16.28 9.28 15.5 15Q14.72 9.28 9 8.5Q14.72 7.72 15.5 2Z" />
+                        <path d="M7 11Q7.6 15.4 12 16Q7.6 16.6 7 21Q6.4 16.6 2 16Q6.4 15.4 7 11Z" />
+                        <circle cx="4.5" cy="6.5" r="0.5" />
+                        <circle cx="20" cy="17.5" r="0.5" />
+                    </svg><span class="nav-builder-label">Try in AI Builder</span></a>
+                <a class="nav-cta" href="https://docs.puter.com/getting-started/" aria-haspopup="dialog"
+                    aria-controls="start-building-modal">Start Building</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item nav-features-dropdown">
+                        <a class="nav-link" href="javascript:void(0)">Platform <svg class="features-chevron"
+                                viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></a>
+                        <div class="features-mega-menu">
+                            <div class="features-mega-columns">
+                                <div class="mega-col">
+                                    <a class="mega-link" href="/ai/"><svg class="mega-link-icon"
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+                                            <path d="M20 2v4" />
+                                            <path d="M22 4h-4" />
+                                            <circle cx="4" cy="20" r="2" />
+                                        </svg><span class="mega-link-text"><span class="mega-link-title">AI
+                                                Gateway</span><span class="mega-link-desc">One API, all AI
+                                                models</span></span></a>
+                                    <a class="mega-link" href="/key-value-database/"><svg class="mega-link-icon"
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                            <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                                            <path d="M3 12A9 3 0 0 0 21 12" />
+                                        </svg><span class="mega-link-text"><span
+                                                class="mega-link-title">Database</span><span class="mega-link-desc">Fast
+                                                NoSQL database</span></span></a>
+                                    <a class="mega-link" href="/object-storage/"><svg class="mega-link-icon"
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+                                        </svg><span class="mega-link-text"><span
+                                                class="mega-link-title">Storage</span><span
+                                                class="mega-link-desc">Scalable cloud file system</span></span></a>
+                                    <a class="mega-link" href="/auth/"><svg class="mega-link-icon"
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="10" cy="7" r="4" />
+                                            <path d="M10.3 15H7a4 4 0 0 0-4 4v2" />
+                                            <path d="M15 15.5V14a2 2 0 0 1 4 0v1.5" />
+                                            <rect width="8" height="5" x="13" y="16" rx=".899" />
+                                        </svg><span class="mega-link-text"><span
+                                                class="mega-link-title">Auth</span><span class="mega-link-desc">User
+                                                authentication &amp; accounts</span></span></a>
+                                </div>
+                                <div class="mega-col">
+                                    <a class="mega-link" href="/serverless-workers/"><svg class="mega-link-icon"
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+                                        </svg><span class="mega-link-text"><span class="mega-link-title">Serverless
+                                                Workers</span><span class="mega-link-desc">Run code
+                                                serverless</span></span></a>
+                                    <a class="mega-link" href="/peer/"><svg class="mega-link-icon"
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="18" cy="5" r="3" />
+                                            <circle cx="6" cy="12" r="3" />
+                                            <circle cx="18" cy="19" r="3" />
+                                            <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+                                            <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+                                        </svg><span class="mega-link-text"><span
+                                                class="mega-link-title">Peer</span><span
+                                                class="mega-link-desc">Real-time communication</span></span></a>
+                                    <a class="mega-link" href="/networking/"><svg class="mega-link-icon"
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="16" y="16" width="6" height="6" rx="1" />
+                                            <rect x="2" y="16" width="6" height="6" rx="1" />
+                                            <rect x="9" y="2" width="6" height="6" rx="1" />
+                                            <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" />
+                                            <path d="M12 12V8" />
+                                        </svg><span class="mega-link-text"><span
+                                                class="mega-link-title">Networking</span><span
+                                                class="mega-link-desc">TCP/IP in the browser!</span></span></a>
+                                    <a class="mega-link" href="/static-hosting/"><svg class="mega-link-icon"
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                                            <path d="M2 12h20" />
+                                        </svg><span class="mega-link-text"><span
+                                                class="mega-link-title">Hosting</span><span
+                                                class="mega-link-desc">Instant static site hosting</span></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-features-dropdown">
+                        <a class="nav-link" href="javascript:void(0)">Resources <svg class="features-chevron"
+                                viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></a>
+                        <div class="features-mega-menu resources-mega-menu">
+                            <div class="features-mega-columns">
+                                <div class="mega-col">
+                                    <a class="mega-link" href="https://docs.puter.com" target="_blank"><span
+                                            class="mega-link-title">Documentation</span></a>
+                                    <a class="mega-link" href="/tutorials/"><span
+                                            class="mega-link-title">Tutorials</span></a>
+                                    <a class="mega-link" href="https://docs.puter.com/playground/" target="_blank"><span
+                                            class="mega-link-title">Code Playground</span></a>
+                                </div>
+                                <div class="mega-col">
+                                    <a class="mega-link" href="/blog/"><span class="mega-link-title">Blog</span></a>
+                                    <a class="mega-link" href="/showcase/"><span
+                                            class="mega-link-title">Showcase</span></a>
+                                    <a class="mega-link" href="https://github.com/HeyPuter" target="_blank"><span
+                                            class="mega-link-title">Open-source</span></a>
+                                </div>
+                            </div>
+                            <div class="resources-social">
+                                <div class="resources-social-links">
+                                    <a href="https://x.com/HeyPuter" target="_blank" aria-label="X"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#444444"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                                        </svg></a>
+                                    <a href="https://github.com/HeyPuter/puter/" target="_blank"
+                                        aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                                            height="22" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#444444"
+                                                d="M12,0.3c-6.6,0-12,5.4-12,12c0,5.3,3.4,9.8,8.2,11.4 C8.8,23.8,9,23.4,9,23.1c0-0.3,0-1,0-2c-3.3,0.7-4-1.6-4-1.6c-0.5-1.4-1.3-1.8-1.3-1.8C2.5,17,3.7,17,3.7,17 c1.2,0.1,1.8,1.2,1.8,1.2c1.1,1.8,2.8,1.3,3.5,1c0.1-0.8,0.4-1.3,0.8-1.6c-2.7-0.3-5.5-1.3-5.5-5.9c0-1.3,0.5-2.4,1.2-3.2 C5.5,8.1,5,6.9,5.7,5.3c0,0,1-0.3,3.3,1.2c1-0.3,2-0.4,3-0.4c1,0,2,0.1,3,0.4c2.3-1.6,3.3-1.2,3.3-1.2c0.7,1.7,0.2,2.9,0.1,3.2 c0.8,0.8,1.2,1.9,1.2,3.2c0,4.6-2.8,5.6-5.5,5.9c0.4,0.4,0.8,1.1,0.8,2.2c0,1.6,0,2.9,0,3.3c0,0.3,0.2,0.7,0.8,0.6 c4.8-1.6,8.2-6.1,8.2-11.4C24,5.7,18.6,0.3,12,0.3z">
+                                            </path>
+                                        </svg></a>
+                                    <a href="https://mastodon.social/@puter" target="_blank" aria-label="Mastodon"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="#444444"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.6 3.6 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.933-.983.741 0 1.337.259 1.792.764.442.505.661 1.187.661 2.046z" />
+                                        </svg></a>
+                                    <a href="https://www.npmjs.com/package/@heyputer/puter.js" target="_blank"
+                                        aria-label="npm"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="#444444" viewBox="0 0 24 24">
+                                            <path
+                                                d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://docs.puter.com" target="_blank">Docs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pricing/">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog/">Blog</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="github" href="https://github.com/heyPuter/puter/" target="_blank"><svg
+                                style="margin-right: 6px;" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px"
+                                viewBox="0 0 24 24">
+                                <g transform="translate(0, 0)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#444444"
+                                        d="M12,0.3c-6.6,0-12,5.4-12,12c0,5.3,3.4,9.8,8.2,11.4 C8.8,23.8,9,23.4,9,23.1c0-0.3,0-1,0-2c-3.3,0.7-4-1.6-4-1.6c-0.5-1.4-1.3-1.8-1.3-1.8C2.5,17,3.7,17,3.7,17 c1.2,0.1,1.8,1.2,1.8,1.2c1.1,1.8,2.8,1.3,3.5,1c0.1-0.8,0.4-1.3,0.8-1.6c-2.7-0.3-5.5-1.3-5.5-5.9c0-1.3,0.5-2.4,1.2-3.2 C5.5,8.1,5,6.9,5.7,5.3c0,0,1-0.3,3.3,1.2c1-0.3,2-0.4,3-0.4c1,0,2,0.1,3,0.4c2.3-1.6,3.3-1.2,3.3-1.2c0.7,1.7,0.2,2.9,0.1,3.2 c0.8,0.8,1.2,1.9,1.2,3.2c0,4.6-2.8,5.6-5.5,5.9c0.4,0.4,0.8,1.1,0.8,2.2c0,1.6,0,2.9,0,3.3c0,0.3,0.2,0.7,0.8,0.6 c4.8-1.6,8.2-6.1,8.2-11.4C24,5.7,18.6,0.3,12,0.3z">
+                                    </path>
+                                </g>
+                            </svg><span class="github-stars"></span></a></h1>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <dialog class="gs-modal" id="start-building-modal" aria-labelledby="gs-modal-title">
+        <div class="gs-modal-body" tabindex="-1" autofocus>
+            <button class="gs-modal-close" type="button" aria-label="Close" title="Close"><svg viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18"></path>
+                    <path d="m6 6 12 12"></path>
+                </svg></button>
+            <h2 class="gs-modal-title" id="gs-modal-title">Ship a Full-Stack App with One Prompt</h2>
+            <p class="gs-modal-sub">Copy this prompt into your AI coding agent, or open it in one below.</p>
+            <div class="gs-prompt">
+                <div class="gs-code">
+                    <span class="gs-prompt-label">
+                        <span class="gs-prompt-label-text">
+                            <span>Give this</span>
+                            <span>to your AI</span>
+                        </span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14"></path>
+                            <path d="m13 6 6 6-6 6"></path>
+                        </svg>
+                    </span>
+                    <code>Create a to-do list app using Puter.js</code>
+                    <button class="gs-copy"
+                        data-copy="Create a to-do list app using Puter.js (if you need more information, read https://docs.puter.com/llms.txt)"
+                        aria-label="Copy" title="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg></button>
+                </div>
+            </div>
+            <div class="works-with">
+                <span class="works-with-label">Try in</span>
+                <div class="works-with-logos">
+                    <a data-tryin="claude-cli://open?q=%s"
+                        title="Try in Claude Code (requires Claude Code v2.1.91+ installed)"
+                        aria-label="Try in Claude Code"><svg style="height: 36px;" fill="currentColor"
+                            fill-rule="evenodd" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Claude Code</title>
+                            <path clip-rule="evenodd"
+                                d="M20.998 10.949H24v3.102h-3v3.028h-1.487V20H18v-2.921h-1.487V20H15v-2.921H9V20H7.488v-2.921H6V20H4.487v-2.921H3V14.05H0V10.95h3V5h17.998v5.949zM6 10.949h1.488V8.102H6v2.847zm10.51 0H18V8.102h-1.49v2.847z">
+                            </path>
+                        </svg></a>
+                    <a data-tryin="codex://new?prompt=%s" title="Try in Codex (requires Codex installed)"
+                        aria-label="Try in Codex"><svg fill="currentColor" fill-rule="evenodd" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Codex</title>
+                            <path clip-rule="evenodd"
+                                d="M8.086.457a6.105 6.105 0 013.046-.415c1.333.153 2.521.72 3.564 1.7a.117.117 0 00.107.029c1.408-.346 2.762-.224 4.061.366l.063.03.154.076c1.357.703 2.33 1.77 2.918 3.198.278.679.418 1.388.421 2.126a5.655 5.655 0 01-.18 1.631.167.167 0 00.04.155 5.982 5.982 0 011.578 2.891c.385 1.901-.01 3.615-1.183 5.14l-.182.22a6.063 6.063 0 01-2.934 1.851.162.162 0 00-.108.102c-.255.736-.511 1.364-.987 1.992-1.199 1.582-2.962 2.462-4.948 2.451-1.583-.008-2.986-.587-4.21-1.736a.145.145 0 00-.14-.032c-.518.167-1.04.191-1.604.185a5.924 5.924 0 01-2.595-.622 6.058 6.058 0 01-2.146-1.781c-.203-.269-.404-.522-.551-.821a7.74 7.74 0 01-.495-1.283 6.11 6.11 0 01-.017-3.064.166.166 0 00.008-.074.115.115 0 00-.037-.064 5.958 5.958 0 01-1.38-2.202 5.196 5.196 0 01-.333-1.589 6.915 6.915 0 01.188-2.132c.45-1.484 1.309-2.648 2.577-3.493.282-.188.55-.334.802-.438.286-.12.573-.22.861-.304a.129.129 0 00.087-.087A6.016 6.016 0 015.635 2.31C6.315 1.464 7.132.846 8.086.457zm-.804 7.85a.848.848 0 00-1.473.842l1.694 2.965-1.688 2.848a.849.849 0 001.46.864l1.94-3.272a.849.849 0 00.007-.854l-1.94-3.393zm5.446 6.24a.849.849 0 000 1.695h4.848a.849.849 0 000-1.696h-4.848z">
+                            </path>
+                        </svg></a>
+                    <a data-tryin="https://claude.ai/new?q=%s" target="_blank" rel="noopener" title="Try in Claude"
+                        aria-label="Try in Claude"><svg fill="currentColor" fill-rule="evenodd" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Claude</title>
+                            <path
+                                d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.724-.491-.364-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.145-.103.019-.073-.164-.274-1.355-2.446-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 01-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.264 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.657-.851-.747-1.926-1.62h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.012-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312-.006.006z">
+                            </path>
+                        </svg></a>
+                    <a data-tryin="https://chatgpt.com/?q=%s" target="_blank" rel="noopener" title="Try in ChatGPT"
+                        aria-label="Try in ChatGPT"><svg fill="currentColor" fill-rule="evenodd" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>OpenAI</title>
+                            <path
+                                d="M9.205 8.658v-2.26c0-.19.072-.333.238-.428l4.543-2.616c.619-.357 1.356-.523 2.117-.523 2.854 0 4.662 2.212 4.662 4.566 0 .167 0 .357-.024.547l-4.71-2.759a.797.797 0 00-.856 0l-5.97 3.473zm10.609 8.8V12.06c0-.333-.143-.57-.429-.737l-5.97-3.473 1.95-1.118a.433.433 0 01.476 0l4.543 2.617c1.309.76 2.189 2.378 2.189 3.948 0 1.808-1.07 3.473-2.76 4.163zM7.802 12.703l-1.95-1.142c-.167-.095-.239-.238-.239-.428V5.899c0-2.545 1.95-4.472 4.591-4.472 1 0 1.927.333 2.712.928L8.23 5.067c-.285.166-.428.404-.428.737v6.898zM12 15.128l-2.795-1.57v-3.33L12 8.658l2.795 1.57v3.33L12 15.128zm1.796 7.23c-1 0-1.927-.332-2.712-.927l4.686-2.712c.285-.166.428-.404.428-.737v-6.898l1.974 1.142c.167.095.238.238.238.428v5.233c0 2.545-1.974 4.472-4.614 4.472zm-5.637-5.303l-4.544-2.617c-1.308-.761-2.188-2.378-2.188-3.948A4.482 4.482 0 014.21 6.327v5.423c0 .333.143.571.428.738l5.947 3.449-1.95 1.118a.432.432 0 01-.476 0zm-.262 3.9c-2.688 0-4.662-2.021-4.662-4.519 0-.19.024-.38.047-.57l4.686 2.71c.286.167.571.167.856 0l5.97-3.448v2.26c0 .19-.07.333-.237.428l-4.543 2.616c-.619.357-1.356.523-2.117.523zm5.899 2.83a5.947 5.947 0 005.827-4.756C22.287 18.339 24 15.84 24 13.296c0-1.665-.713-3.282-1.998-4.448.119-.5.19-.999.19-1.498 0-3.401-2.759-5.947-5.946-5.947-.642 0-1.26.095-1.88.31A5.962 5.962 0 0010.205 0a5.947 5.947 0 00-5.827 4.757C1.713 5.447 0 7.945 0 10.49c0 1.666.713 3.283 1.998 4.448-.119.5-.19 1-.19 1.499 0 3.401 2.759 5.946 5.946 5.946.642 0 1.26-.095 1.88-.309a5.96 5.96 0 004.162 1.713z">
+                            </path>
+                        </svg></a>
+                    <a data-tryin="https://cursor.com/link/prompt?text=%s" target="_blank" rel="noopener"
+                        title="Try in Cursor" aria-label="Try in Cursor"><svg fill="currentColor" fill-rule="evenodd"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Cursor</title>
+                            <path
+                                d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z">
+                            </path>
+                        </svg></a>
+                    <a data-tryin="https://lovable.dev/?autosubmit=true#prompt=%s" target="_blank" rel="noopener"
+                        title="Try in Lovable" aria-label="Try in Lovable"><svg style="height: 22px;"
+                            fill="currentColor" fill-rule="evenodd" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Lovable</title>
+                            <path clip-rule="evenodd"
+                                d="M7.082 0c3.91 0 7.081 3.179 7.081 7.1v2.7h2.357c3.91 0 7.082 3.178 7.082 7.1 0 3.923-3.17 7.1-7.082 7.1H0V7.1C0 3.18 3.17 0 7.082 0z">
+                            </path>
+                        </svg></a>
+                </div>
+            </div>
+            <p class="cta-guide-note">Coding manually? <a href="https://docs.puter.com/getting-started/">see the
+                    guide</a></p>
+
+        </div>
+    </dialog>
+
+    <main>
+        <div class="container" style="min-height: 100vh; margin-top: 100px; padding-bottom: 200px;">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-3 d-none d-lg-block">
+                    <div class="table-of-contents">
+                        <div class="toc-title">On this page</div>
+                        <div class="toc-nav"><a href="#getting-started" class="toc-link toc-level-1"
+                                data-level="1">Getting Started</a><a
+                                href="#example-1-use-qwen38-max-for-conversational-ai" class="toc-link toc-level-1"
+                                data-level="1">Example 1: Use Qwen3.8 Max for conversational AI</a><a
+                                href="#example-2-efficient-chat-with-qwen38-flash" class="toc-link toc-level-1"
+                                data-level="1">Example 2: Efficient Chat with Qwen3.8 Flash</a><a
+                                href="#example-3-write-code-with-qwen36-27b" class="toc-link toc-level-1"
+                                data-level="1">Example 3: Write code with Qwen3.6 27B</a><a
+                                href="#example-4-fast-streaming-with-qwen38-max-prime" class="toc-link toc-level-1"
+                                data-level="1">Example 4: Fast Streaming with Qwen3.8 Max Prime</a><a
+                                href="#example-5-image-analysis" class="toc-link toc-level-1" data-level="1">Example 5:
+                                Image Analysis</a><a href="#example-6-image-generation-with-qwen-image"
+                                class="toc-link toc-level-1" data-level="1">Example 6: Image Generation with Qwen
+                                Image</a><a href="#list-of-supported-models" class="toc-link toc-level-1"
+                                data-level="1">List of supported models</a><a href="#qwen-free-api-key"
+                                class="toc-link toc-level-1" data-level="1">Qwen Free API Key</a><a href="#conclusion"
+                                class="toc-link toc-level-1" data-level="1">Conclusion</a><a href="#related-resources"
+                                class="toc-link toc-level-1" data-level="1">Related Resources</a></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 col-md-10 tutorial-text">
+
+                    <div id="article-type"
+                        style="text-transform: uppercase; font-size: 15px; color: #767676; border-bottom:none !important;">
+                        <a style="color: #767676 !important;" href="/tutorials/">Tutorials</a></div>
+                    <div style="margin-bottom: 30px;">
+
+                        <h1>Free, Unlimited Qwen API</h1>
+
+                        <div class="article-meta" style="margin-bottom: 20px;">
+                            <div class="article-author"><a href="/author/jelveh/">Nariman Jelveh</a>, <a
+                                    href="/author/reynaldichernando/">Reynaldi Chernando</a></div>
+
+                            <div class="article-updated">
+                                <time datetime="2026-11-10" itemprop="dateModified">
+                                    Updated: November 10, 2026
+                                </time>
+                            </div>
+
+                        </div>
+                    </div>
+                    <details class="mobile-table-of-contents">
+                        <summary class="mobile-toc-title"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="toc-chevron">
+                                <path d="m6 9 6 6 6-6" />
+                            </svg><span>On this page</span></summary>
+                        <div class="mobile-toc-nav"><a href="#getting-started"
+                                class="mobile-toc-link mobile-toc-level-1" data-level="1">Getting Started</a><a
+                                href="#example-1-use-qwen38-max-for-conversational-ai"
+                                class="mobile-toc-link mobile-toc-level-1" data-level="1">Example 1: Use Qwen3.8 Max for
+                                conversational AI</a><a href="#example-2-efficient-chat-with-qwen38-flash"
+                                class="mobile-toc-link mobile-toc-level-1" data-level="1">Example 2: Efficient Chat with
+                                Qwen3.8 Flash</a><a href="#example-3-write-code-with-qwen36-27b"
+                                class="mobile-toc-link mobile-toc-level-1" data-level="1">Example 3: Write code with
+                                Qwen3.6 27B</a><a href="#example-4-fast-streaming-with-qwen38-max-prime"
+                                class="mobile-toc-link mobile-toc-level-1" data-level="1">Example 4: Fast Streaming with
+                                Qwen3.8 Max Prime</a><a href="#example-5-image-analysis"
+                                class="mobile-toc-link mobile-toc-level-1" data-level="1">Example 5: Image
+                                Analysis</a><a href="#example-6-image-generation-with-qwen-image"
+                                class="mobile-toc-link mobile-toc-level-1" data-level="1">Example 6: Image Generation
+                                with Qwen Image</a><a href="#list-of-supported-models"
+                                class="mobile-toc-link mobile-toc-level-1" data-level="1">List of supported models</a><a
+                                href="#qwen-free-api-key" class="mobile-toc-link mobile-toc-level-1" data-level="1">Qwen
+                                Free API Key</a><a href="#conclusion" class="mobile-toc-link mobile-toc-level-1"
+                                data-level="1">Conclusion</a><a href="#related-resources"
+                                class="mobile-toc-link mobile-toc-level-1" data-level="1">Related Resources</a></div>
+                    </details>
+                    <p>This tutorial will show you how to use <a href="https://developer.puter.com">Puter.js</a> to
+                        access all <a href="/ai/qwen/">Qwen</a> family models—from general chat to instruction‑tuned,
+                        vision and code models—completely free, without any API keys or usage restrictions.</p>
+                    <p>Puter is the pioneer of the <a href="https://docs.puter.com/user-pays-model/">"User-Pays"
+                            model</a>, which allows developers to incorporate AI capabilities into their applications
+                        while each user will cover their own usage costs. This model enables developers to <a
+                            href="/ai/">access advanced AI capabilities</a> for free, without any API keys or
+                        server-side setup.</p>
+                    <p>The unique architecture of Puter.js makes it exceptionally well suited for AI coding assistants,
+                        agents, and vibe coding platforms to build on top of. Since with Puter.js apps and websites
+                        there are no keys and no backend involved, they will run end-to-end as soon as they are
+                        generated. No third-party signup, no service to spin up, no API keys to paste. That cuts out a
+                        whole category of security pitfalls and the configuration overhead that normally stops
+                        AI-generated apps from working on the first run.</p>
+                    <h2 id="getting-started">Getting Started</h2>
+                    <p>To use Puter.js, import our <a href="https://www.npmjs.com/package/@heyputer/puter.js">npm
+                            module</a> in your project:</p>
+
+                    <div class="code-wrapper" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <pre><code class="language-js">// npm install @heyputer/puter.js
+import { puter } from '@heyputer/puter.js';
+</code></pre>
+                    </div>
+                    <p>Or alternatively, add our script via CDN if you are working directly with HTML, simply add it to
+                        the <code>&lt;head&gt;</code> or <code>&lt;body&gt;</code> section of your code:</p>
+
+                    <div class="code-wrapper" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <pre><code>&lt;script src="https://js.puter.com/v2/"&gt;&lt;/script&gt;
+</code></pre>
+                    </div>
+                    <p>Nothing else is required to start using Puter.js for free access to Qwen models and capabilities.
+                    </p>
+                    <h2 id="example-1-use-qwen38-max-for-conversational-ai"><span class="timeline-step">Example
+                            1:</span> Use Qwen3.8 Max for conversational AI</h2>
+
+                    <p>To generate text using <a href="/ai/qwen/qwen3.8-max/">Qwen3.8 Max</a>, use the <a
+                            href="https://docs.puter.com/AI/chat/"><code>puter.ai.chat()</code></a> function:</p>
+
+                    <div class="code-wrapper" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <pre><code class="language-javascript">puter.ai.chat("Tell me a fun trivia fact about space.", { model: "qwen/qwen3.8-max" })
+    .then(response =&gt; {
+        puter.print(response);
+    });
+</code></pre>
+                    </div>
+                    <p>Full code example:</p>
+
+                    <div class="code-wrapper" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <pre><code class="language-html">&lt;html&gt;
+&lt;body&gt;
+    &lt;script src="https://js.puter.com/v2/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        puter.ai.chat("Tell me a fun trivia fact about space.", { model: "qwen/qwen3.8-max" })
+            .then(response =&gt; {
+                puter.print(response);
+            });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                    </div>
+                    <h2 id="example-2-efficient-chat-with-qwen38-flash"><span class="timeline-step">Example 2:</span>
+                        Efficient Chat with Qwen3.8 Flash</h2>
+
+                    <p>For high-throughput, low-latency workloads like classification, extraction, and summarization,
+                        use a speed-optimized model such as <a href="/ai/qwen/qwen3.8-flash/">Qwen3.8 Flash</a>.</p>
+
+                    <div class="code-wrapper" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <pre><code class="language-html">&lt;html&gt;
+&lt;body&gt;
+    &lt;script src="https://js.puter.com/v2/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        puter.ai.chat("Summarize the key benefits of using a CDN in one paragraph.", {
+            model: 'qwen/qwen3.8-flash'
+        }).then(response =&gt; {
+            puter.print(response);
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                    </div>
+                    <h2 id="example-3-write-code-with-qwen36-27b"><span class="timeline-step">Example 3:</span> Write
+                        code with Qwen3.6 27B</h2>
+
+                    <p>To write code using <a href="/ai/qwen/qwen3.6-27b/">Qwen3.6 27B</a>, a model built for agentic
+                        coding, use the <a href="https://docs.puter.com/AI/chat/"><code>puter.ai.chat()</code></a>
+                        function:</p>
+
+                    <div class="code-wrapper" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <pre><code class="language-html">&lt;html&gt;
+&lt;body&gt;
+    &lt;script src="https://js.puter.com/v2/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        puter.ai.chat(
+            "Write a simple JavaScript function that calculates the sum of two numbers.",
+            { model: "qwen/qwen3.6-27b" }
+        )
+        .then(response =&gt; {
+            puter.print(response, {code: true});
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                    </div>
+                    <h2 id="example-4-fast-streaming-with-qwen38-max-prime"><span class="timeline-step">Example
+                            4:</span> Fast Streaming with Qwen3.8 Max Prime</h2>
+
+                    <p>When response time matters, use <a href="/ai/qwen/qwen3.8-max-prime/">Qwen3.8 Max Prime</a>, a
+                        faster serving tier of Qwen3.8 Max, with streaming to see step-by-step reasoning in real-time:
+                    </p>
+
+                    <div class="code-wrapper" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <pre><code class="language-html">&lt;html&gt;
+&lt;body&gt;
+    &lt;script src="https://js.puter.com/v2/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        async function streamResponse() {
+            const response = await puter.ai.chat(
+                "Explain quantum computing in detail",
+                { model: "qwen/qwen3.8-max-prime", stream: true }
+            );
+
+            for await (const part of response) {
+                if (part?.reasoning) puter.print(part?.reasoning);
+                else puter.print(part?.text);
+            }
+        }
+
+        streamResponse();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                    </div>
+                    <h2 id="example-5-image-analysis"><span class="timeline-step">Example 5:</span> Image Analysis</h2>
+
+                    <p>To analyze images, simply provide an image URL to <a
+                            href="https://docs.puter.com/AI/chat/"><code>puter.ai.chat()</code></a>:</p>
+
+                    <div class="code-wrapper" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <pre><code class="language-html">&lt;html&gt;
+&lt;body&gt;
+    &lt;script src="https://js.puter.com/v2/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        puter.ai.chat(
+            "What do you see in this image?",
+            "https://assets.puter.site/doge.jpeg",
+            { model: 'qwen/qwen3.7-plus' }
+        ).then(response =&gt; {
+            document.write(response);
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                    </div>
+                    <h2 id="example-6-image-generation-with-qwen-image"><span class="timeline-step">Example 6:</span>
+                        Image Generation with Qwen Image</h2>
+
+                    <p>To generate images from text, use <a href="/ai/qwen/qwen-image/">Qwen Image</a> with the <a
+                            href="https://docs.puter.com/AI/txt2img/"><code>puter.ai.txt2img()</code></a> function. The
+                        model is particularly strong at rendering accurate text within images, making it ideal for
+                        posters and design-heavy visuals:</p>
+
+                    <div class="code-wrapper" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <pre><code class="language-html">&lt;html&gt;
+&lt;body&gt;
+    &lt;script src="https://js.puter.com/v2/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        puter.ai.txt2img(
+            "A retro travel poster for Mars with bold typography reading 'Visit Mars' and 'The Red Frontier — 2099' at the bottom",
+            { model: "qwen/qwen-image" }
+        ).then(imageElement =&gt; {
+            document.body.appendChild(imageElement);
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                    </div>
+                    <h2 id="list-of-supported-models">List of supported models</h2>
+
+                    <p>The following Qwen models are supported by Puter.js:</p>
+
+                    <div class="code-wrapper code-collapsible" style="position: relative;">
+                        <div class="code-buttons">
+                            <div class="code-button copy-code-button"><span class="copy"></span></div>
+                        </div>
+                        <details class="code-details">
+                            <summary class="code-summary">
+                                <pre class="code-preview"><code>qwen/qwen3.8-max-prime
+qwen/qwen3.8-flash
+qwen/qwen3.8-max
+qwen/qwen3.7-plus
+qwen/qwen3.7-max
+qwen/qwen3.7-flash
+qwen/qwen3.6-plus
+qwen/qwen3.6-flash
+qwen/qwen3.6-27b
+qwen/qwen3.6-35b-a3b
+qwen/qwen3.5-plus
+qwen/qwen3.5-plus-20260420
+qwen/qwen3.5-122b-a10b
+qwen/qwen3.5-27b
+qwen/qwen3.5-35b-a3b</code></pre>
+                                <div class="code-expand-hint">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="m6 9 6 6 6-6"></path>
+                                    </svg>
+                                    <span>Show 21 more lines...</span>
+                                </div>
+                            </summary>
+                            <pre class="code-full"><code>qwen/qwen3.8-max-prime
+qwen/qwen3.8-flash
+qwen/qwen3.8-max
+qwen/qwen3.7-plus
+qwen/qwen3.7-max
+qwen/qwen3.7-flash
+qwen/qwen3.6-plus
+qwen/qwen3.6-flash
+qwen/qwen3.6-27b
+qwen/qwen3.6-35b-a3b
+qwen/qwen3.5-plus
+qwen/qwen3.5-plus-20260420
+qwen/qwen3.5-122b-a10b
+qwen/qwen3.5-27b
+qwen/qwen3.5-35b-a3b
+qwen/qwen3.5-flash-02-23
+qwen/qwen3.5-397b-a17b
+qwen/qwen3.5-plus-02-15
+qwen/qwen3-coder-next
+qwen/qwen3-next-80b-a3b-instruct
+qwen/qwen3-235b-a22b-2507
+qwen/qwen3-235b-a22b-thinking-2507
+qwen/qwen3-30b-a3b-instruct-2507
+qwen/qwen3-coder-30b-a3b-instruct
+qwen/qwen3-coder-flash
+qwen/qwen3-vl-30b-a3b-instruct
+qwen/qwen3-vl-plus
+qwen/qwen3-omni-flash
+qwen/qwen3-14b
+qwen/qwen3-32b
+qwen/qwen-max
+qwen/qwen-plus
+qwen/qwen-flash
+qwen/qwen-mt-plus
+qwen/qwen-image
+qwen/qwen-2.5-coder-32b-instruct
+</code></pre>
+                            <div class="code-collapse-hint">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="m18 15-6-6-6 6"></path>
+                                </svg>
+                                <span>Collapse code</span>
+                            </div>
+                        </details>
+                    </div>
+                    <h2 id="qwen-free-api-key">Qwen Free API Key</h2>
+                    <p>Qwen offers a free tier through <a
+                            href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio</a>
+                        that includes 1 million input tokens and 1 million output tokens, valid for 90 days after
+                        activation. That's enough to prototype and build out an app, but once you use up those tokens or
+                        the 90 days pass, you're back to the standard pay-as-you-go model where every request your users
+                        make comes out of your account.</p>
+                    <p>With Puter.js, there's no API key to manage and no free quota to run down. Each user covers their
+                        own usage through their Puter account, so you pay nothing no matter how many people use your
+                        app.</p>
+                    <h2 id="conclusion">Conclusion</h2>
+                    <p>Using Puter.js, you can access Qwen model capabilities without needing an API key or a backend.
+                        And thanks to the <a href="https://docs.puter.com/user-pays-model/">User-Pays model</a>, your
+                        users cover their own AI usage, not you as the developer. This means you can build powerful
+                        applications without worrying about AI usage costs.</p>
+                    <p>You can find all AI features supported by Puter.js in the <a
+                            href="https://docs.puter.com/AI/">documentation</a>.</p>
+                    <h2 id="related-resources">Related Resources</h2>
+                    <ul>
+                        <li><a href="/tutorials/qwen-api-pricing/">Qwen API Pricing</a></li>
+                        <li><a href="/tutorials/free-unlimited-alibaba-ai-api/">Free, Unlimited Alibaba AI API</a></li>
+                        <li><a href="/tutorials/free-unlimited-ai-api/">Free, Unlimited AI API</a></li>
+                        <li><a href="/tutorials/free-unlimited-openai-api/">Free, Unlimited OpenAI API</a></li>
+                        <li><a href="/tutorials/free-unlimited-claude-35-sonnet-api/">Free, Unlimited Claude API</a>
+                        </li>
+                        <li><a href="/tutorials/free-unlimited-gemma-api/">Free, Unlimited Gemma API</a></li>
+                        <li><a href="/tutorials/free-unlimited-mistral-api/">Free, Unlimited Mistral API</a></li>
+                        <li><a href="/tutorials/free-unlimited-openrouter-api/">Free, Unlimited OpenRouter API</a></li>
+                        <li><a href="/tutorials/free-unlimited-deepseek-api/">Free, Unlimited DeepSeek API</a></li>
+                        <li><a href="/tutorials/free-unlimited-kwaipilot-kat-api/">Free, Unlimited Kwaipilot Kat API</a>
+                        </li>
+                        <li><a href="/tutorials/free-unlimited-minimax-api/">Free, Unlimited MiniMax API</a></li>
+                        <li><a href="/tutorials/free-unlimited-kimi-k2-api/">Free, Unlimited Kimi API</a></li>
+                        <li><a href="/tutorials/free-unlimited-xiaomi-mimo-api/">Free, Unlimited Xiaomi MiMo API</a>
+                        </li>
+                        <li><a href="/tutorials/free-unlimited-grok-api/">Free, Unlimited Grok API</a></li>
+                        <li><a href="/tutorials/free-unlimited-bytedance-seed-api/">Free, Unlimited ByteDance Seed
+                                API</a></li>
+                        <li><a href="/tutorials/free-unlimited-tencent-hunyuan-api/">Free, Unlimited Tencent Hunyuan
+                                API</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <section class="cta-section py-5 bg-light" style="padding: 80px 0 !important;">
+            <div class="container text-center">
+                <h2 style="font-size: 30px;">Ship a Full-Stack App with One Prompt</h2>
+                <div class="gs-prompt">
+                    <div class="gs-code">
+                        <span class="gs-prompt-label">
+                            <span class="gs-prompt-label-text">
+                                <span>Give this</span>
+                                <span>to your AI</span>
+                            </span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14"></path>
+                                <path d="m13 6 6 6-6 6"></path>
+                            </svg>
+                        </span>
+                        <code>Build an AI chat app using Puter.js</code>
+                        <button class="gs-copy"
+                            data-copy="Build an AI chat app using Puter.js (if you need more information, read https://docs.puter.com/llms.txt)"
+                            aria-label="Copy" title="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg></button>
+                    </div>
+                </div>
+                <div class="works-with">
+                    <span class="works-with-label">Try in</span>
+                    <div class="works-with-logos">
+                        <a data-tryin="claude-cli://open?q=%s"
+                            title="Try in Claude Code (requires Claude Code v2.1.91+ installed)"
+                            aria-label="Try in Claude Code"><svg style="height: 36px;" fill="currentColor"
+                                fill-rule="evenodd" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <title>Claude Code</title>
+                                <path clip-rule="evenodd"
+                                    d="M20.998 10.949H24v3.102h-3v3.028h-1.487V20H18v-2.921h-1.487V20H15v-2.921H9V20H7.488v-2.921H6V20H4.487v-2.921H3V14.05H0V10.95h3V5h17.998v5.949zM6 10.949h1.488V8.102H6v2.847zm10.51 0H18V8.102h-1.49v2.847z">
+                                </path>
+                            </svg></a>
+                        <a data-tryin="codex://new?prompt=%s" title="Try in Codex (requires Codex installed)"
+                            aria-label="Try in Codex"><svg fill="currentColor" fill-rule="evenodd" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Codex</title>
+                                <path clip-rule="evenodd"
+                                    d="M8.086.457a6.105 6.105 0 013.046-.415c1.333.153 2.521.72 3.564 1.7a.117.117 0 00.107.029c1.408-.346 2.762-.224 4.061.366l.063.03.154.076c1.357.703 2.33 1.77 2.918 3.198.278.679.418 1.388.421 2.126a5.655 5.655 0 01-.18 1.631.167.167 0 00.04.155 5.982 5.982 0 011.578 2.891c.385 1.901-.01 3.615-1.183 5.14l-.182.22a6.063 6.063 0 01-2.934 1.851.162.162 0 00-.108.102c-.255.736-.511 1.364-.987 1.992-1.199 1.582-2.962 2.462-4.948 2.451-1.583-.008-2.986-.587-4.21-1.736a.145.145 0 00-.14-.032c-.518.167-1.04.191-1.604.185a5.924 5.924 0 01-2.595-.622 6.058 6.058 0 01-2.146-1.781c-.203-.269-.404-.522-.551-.821a7.74 7.74 0 01-.495-1.283 6.11 6.11 0 01-.017-3.064.166.166 0 00.008-.074.115.115 0 00-.037-.064 5.958 5.958 0 01-1.38-2.202 5.196 5.196 0 01-.333-1.589 6.915 6.915 0 01.188-2.132c.45-1.484 1.309-2.648 2.577-3.493.282-.188.55-.334.802-.438.286-.12.573-.22.861-.304a.129.129 0 00.087-.087A6.016 6.016 0 015.635 2.31C6.315 1.464 7.132.846 8.086.457zm-.804 7.85a.848.848 0 00-1.473.842l1.694 2.965-1.688 2.848a.849.849 0 001.46.864l1.94-3.272a.849.849 0 00.007-.854l-1.94-3.393zm5.446 6.24a.849.849 0 000 1.695h4.848a.849.849 0 000-1.696h-4.848z">
+                                </path>
+                            </svg></a>
+                        <a data-tryin="https://claude.ai/new?q=%s" target="_blank" rel="noopener" title="Try in Claude"
+                            aria-label="Try in Claude"><svg fill="currentColor" fill-rule="evenodd" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Claude</title>
+                                <path
+                                    d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.724-.491-.364-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.145-.103.019-.073-.164-.274-1.355-2.446-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 01-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.264 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.657-.851-.747-1.926-1.62h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.012-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312-.006.006z">
+                                </path>
+                            </svg></a>
+                        <a data-tryin="https://chatgpt.com/?q=%s" target="_blank" rel="noopener" title="Try in ChatGPT"
+                            aria-label="Try in ChatGPT"><svg fill="currentColor" fill-rule="evenodd" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>OpenAI</title>
+                                <path
+                                    d="M9.205 8.658v-2.26c0-.19.072-.333.238-.428l4.543-2.616c.619-.357 1.356-.523 2.117-.523 2.854 0 4.662 2.212 4.662 4.566 0 .167 0 .357-.024.547l-4.71-2.759a.797.797 0 00-.856 0l-5.97 3.473zm10.609 8.8V12.06c0-.333-.143-.57-.429-.737l-5.97-3.473 1.95-1.118a.433.433 0 01.476 0l4.543 2.617c1.309.76 2.189 2.378 2.189 3.948 0 1.808-1.07 3.473-2.76 4.163zM7.802 12.703l-1.95-1.142c-.167-.095-.239-.238-.239-.428V5.899c0-2.545 1.95-4.472 4.591-4.472 1 0 1.927.333 2.712.928L8.23 5.067c-.285.166-.428.404-.428.737v6.898zM12 15.128l-2.795-1.57v-3.33L12 8.658l2.795 1.57v3.33L12 15.128zm1.796 7.23c-1 0-1.927-.332-2.712-.927l4.686-2.712c.285-.166.428-.404.428-.737v-6.898l1.974 1.142c.167.095.238.238.238.428v5.233c0 2.545-1.974 4.472-4.614 4.472zm-5.637-5.303l-4.544-2.617c-1.308-.761-2.188-2.378-2.188-3.948A4.482 4.482 0 014.21 6.327v5.423c0 .333.143.571.428.738l5.947 3.449-1.95 1.118a.432.432 0 01-.476 0zm-.262 3.9c-2.688 0-4.662-2.021-4.662-4.519 0-.19.024-.38.047-.57l4.686 2.71c.286.167.571.167.856 0l5.97-3.448v2.26c0 .19-.07.333-.237.428l-4.543 2.616c-.619.357-1.356.523-2.117.523zm5.899 2.83a5.947 5.947 0 005.827-4.756C22.287 18.339 24 15.84 24 13.296c0-1.665-.713-3.282-1.998-4.448.119-.5.19-.999.19-1.498 0-3.401-2.759-5.947-5.946-5.947-.642 0-1.26.095-1.88.31A5.962 5.962 0 0010.205 0a5.947 5.947 0 00-5.827 4.757C1.713 5.447 0 7.945 0 10.49c0 1.666.713 3.283 1.998 4.448-.119.5-.19 1-.19 1.499 0 3.401 2.759 5.946 5.946 5.946.642 0 1.26-.095 1.88-.309a5.96 5.96 0 004.162 1.713z">
+                                </path>
+                            </svg></a>
+                        <a data-tryin="https://cursor.com/link/prompt?text=%s" target="_blank" rel="noopener"
+                            title="Try in Cursor" aria-label="Try in Cursor"><svg fill="currentColor"
+                                fill-rule="evenodd" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <title>Cursor</title>
+                                <path
+                                    d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z">
+                                </path>
+                            </svg></a>
+                        <a data-tryin="https://lovable.dev/?autosubmit=true#prompt=%s" target="_blank" rel="noopener"
+                            title="Try in Lovable" aria-label="Try in Lovable"><svg style="height: 22px;"
+                                fill="currentColor" fill-rule="evenodd" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Lovable</title>
+                                <path clip-rule="evenodd"
+                                    d="M7.082 0c3.91 0 7.081 3.179 7.081 7.1v2.7h2.357c3.91 0 7.082 3.178 7.082 7.1 0 3.923-3.17 7.1-7.082 7.1H0V7.1C0 3.18 3.17 0 7.082 0z">
+                                </path>
+                            </svg></a>
+                    </div>
+                </div>
+                <p class="cta-guide-note">Coding manually? <a href="https://docs.puter.com/getting-started/">see the
+                        guide</a></p>
+
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3Csvg%20x%3D%220px%22%20y%3D%220px%22%20width%3D%2248px%22%20height%3D%2248px%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20stroke-width%3D%222%22%20transform%3D%22matrix(0%2C%201%2C%20-1%2C%200%2C%2047.999504%2C%200.000014)%22%3E%3Cpolyline%20points%3D%2239%2024%2025%2024%2025%2028%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Cpolyline%20points%3D%2235.879%2010.121%2032%2014%2025%2014%2025%2018%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Cpath%20d%3D%22M13%2C26a10.29%2C10.29%2C0%2C0%2C1-7.2-3%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Cpath%20d%3D%22M17%2C31.6A5.826%2C5.826%2C0%2C0%2C1%2C13%2C26a5.731%2C5.731%2C0%2C0%2C1%2C2-4.4%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Cpath%20d%3D%22M35.879%2C37.879%2C32%2C34H25v2A9.9%2C9.9%2C0%2C0%2C1%2C15%2C46%2C9.9%2C9.9%2C0%2C0%2C1%2C5%2C36a9.058%2C9.058%2C0%2C0%2C1%2C.6-3.2A5.627%2C5.627%2C0%2C0%2C1%2C3%2C28a5.888%2C5.888%2C0%2C0%2C1%2C2.8-5A9.994%2C9.994%2C0%2C0%2C1%2C3%2C16%2C9.9%2C9.9%2C0%2C0%2C1%2C13%2C6h.4A5.826%2C5.826%2C0%2C0%2C1%2C19%2C2a5.893%2C5.893%2C0%2C0%2C1%2C6%2C6%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%228%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20data-color%3D%22color-2%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2224%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20data-color%3D%22color-2%22%20stroke-linejoin%3D%22miter%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2240%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%2210%22%20stroke-width%3D%222%22%20data-color%3D%22color-2%22%20stroke-linejoin%3D%22miter%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                            alt="Puter Developer" height="30">
+                        <span>Puter Developer</span>
+                    </div>
+                    <p id="footer-copyright">&copy; 2026 Puter Technologies Inc.<br>All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <a href="https://puter.com" target="_blank">Puter.com</a>
+                        <a href="/ai/">AI Gateway</a>
+                        <a href="/object-storage/">Storage</a>
+                        <a href="/key-value-database/">Database</a>
+                        <a href="/static-hosting/">Hosting</a>
+                        <a href="/serverless-workers/">Serverless Workers</a>
+                        <a href="/networking/">Networking</a>
+                        <a href="/peer/">Peer</a>
+                        <a href="/auth/">Auth</a>
+                        <a href="/image-generation/">Image Generation</a>
+                        <a href="/video-generation/">Video Generation</a>
+                        <a href="/text-to-speech/">Text to Speech</a>
+                        <a href="/speech-to-text/">Speech to Text</a>
+                        <a href="/voice-changer/">Voice Changer</a>
+                        <a href="/ocr/">OCR API</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="/tutorials/">Tutorials</a>
+                        <a href="https://docs.puter.com" target="_blank">Docs</a>
+                        <a href="/blog/">Blog</a>
+                        <a href="https://docs.puter.com/playground/" target="_blank">Playground</a>
+                        <a href="/ai/models/">AI Models</a>
+                        <a href="/ai/providers/">AI Providers</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Community</h4>
+                        <a href="https://github.com/HeyPuter/puter" target="_blank">GitHub</a>
+                        <a href="https://x.com/HeyPuter" target="_blank">X</a>
+                        <a href="https://mastodon.social/@puter" target="_blank">Mastodon</a>
+                        <a href="https://www.npmjs.com/package/@heyputer/puter.js" target="_blank">npm</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Showcase</h4>
+                        <a href="https://builder.puter.com/?utm_source=developer.puter.com&utm_medium=referral&utm_campaign=developer_footer"
+                            target="_blank">AI Builder</a>
+                        <a href="https://online-camera.com" target="_blank">Camera</a>
+                        <a href="https://cap-table.io" target="_blank">Cap Table</a>
+                        <a href="https://online-notepad.com" target="_blank">Notepad</a>
+                        <a href="https://voice-recorder.com" target="_blank">Voice Recorder</a>
+                        <a href="https://audio-editor.app" target="_blank">Audio Editor</a>
+                        <a href="https://memo.cloud" target="_blank">Memos</a>
+                        <a href="/showcase/" style="margin-top: 5px;">View All &rarr;</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="/pricing/">Pricing</a>
+                        <a href="mailto:hi@puter.com">Contact</a>
+                        <a href="https://puter.com/terms" target="_blank">Terms</a>
+                        <a href="https://puter.com/privacy" target="_blank">Privacy</a>
+                        <a href="https://status.puter.com/" target="_blank">Status</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/highlightjs/highlight.min.js"></script>
+    <script src="/assets/js/highlightjs/languages/python.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script src="/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+# lioCode launcher — starts the local coding-agent workspace.
+#
+# Usage:
+#   liocode                 # starts at port 8000, or the next free port
+#   liocode --port 1024     # use exactly 1024 (fails if it is busy)
+#   liocode -p 1024         # short form
+#   liocode --install       # install to ~/.local/bin
+#   liocode -i
+#   liocode --remove        # remove the system installation
+#   liocode -r
+#   liocode --help
+#
+# The current working directory is registered as the active project folder.
+# Commands and file actions run inside that folder.
+
+set -e
+
+INSTALL_DIR="$HOME/.local/bin"
+INSTALL_PROJECT_DIR="$INSTALL_DIR/liocode_project"
+INSTALL_NAME="liocode"
+
+PORT=""
+HOST="127.0.0.1"
+EXPLICIT_PORT=0
+
+usage() {
+    echo "Usage: liocode [--port|-p PORT] [--install|-i] [--remove|-r] [--help]"
+    echo ""
+    echo "  (no --port)     start at 8000; if busy, try 8001, 8002, ..."
+    echo "  --port PORT     use exactly PORT and fail if it is occupied"
+    echo "  --install       copy the app to ~/.local/bin/liocode_project"
+    echo "  --remove        remove the installed app and launcher"
+}
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --port|-p)
+            if [[ -z "${2:-}" || ! "$2" =~ ^[0-9]+$ ]] || (( $2 < 1 || $2 > 65535 )); then
+                echo "Error: --port needs a number between 1 and 65535." >&2
+                exit 1
+            fi
+            PORT="$2"
+            EXPLICIT_PORT=1
+            shift 2
+            ;;
+        --install|-i)
+            echo "Installing lioCode to $INSTALL_PROJECT_DIR ..."
+            mkdir -p "$INSTALL_PROJECT_DIR"
+            SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+            files=("liocode" "server.js" "agent.js" "index.html" "setup.html" "package.json" "README.md" "LICENSE")
+            for file in "${files[@]}"; do
+                if [[ -f "$SCRIPT_DIR/$file" ]]; then
+                    cp "$SCRIPT_DIR/$file" "$INSTALL_PROJECT_DIR/"
+                    echo "  copied: $file"
+                fi
+            done
+            chmod +x "$INSTALL_PROJECT_DIR/liocode" 2>/dev/null || true
+            ln -sf "$INSTALL_PROJECT_DIR/liocode" "$INSTALL_DIR/$INSTALL_NAME"
+            echo "Installation complete. Run 'liocode' from any project folder."
+            exit 0
+            ;;
+        --remove|-r)
+            echo "Removing lioCode from system location ..."
+            if [[ -L "$INSTALL_DIR/$INSTALL_NAME" || -f "$INSTALL_DIR/$INSTALL_NAME" ]]; then
+                rm -f "$INSTALL_DIR/$INSTALL_NAME"
+                echo "  removed: $INSTALL_NAME"
+            fi
+            if [[ -d "$INSTALL_PROJECT_DIR" ]]; then
+                rm -rf "$INSTALL_PROJECT_DIR"
+                echo "  removed: $INSTALL_PROJECT_DIR"
+            fi
+            echo "Removal complete."
+            exit 0
+            ;;
+        --help|-h)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1" >&2
+            usage >&2
+            exit 1
+            ;;
+    esac
+done
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+if [[ "$SCRIPT_DIR" == "$INSTALL_DIR" ]]; then
+    SERVER_DIR="$INSTALL_PROJECT_DIR"
+else
+    SERVER_DIR="$SCRIPT_DIR"
+fi
+
+if [[ ! -f "$SERVER_DIR/server.js" ]]; then
+    echo "Error: server.js not found in $SERVER_DIR" >&2
+    echo "Run 'liocode --install' from the source folder, or launch the script from the project directory." >&2
+    exit 1
+fi
+
+if [[ "$EXPLICIT_PORT" == "1" ]]; then
+    export PORT="$PORT"
+    export LIOCODE_PORT_EXPLICIT=1
+    echo "Starting lioCode on http://${HOST}:${PORT}/ (explicit port)"
+else
+    unset PORT
+    unset LIOCODE_PORT_EXPLICIT
+    echo "Starting lioCode (auto port, starting at 8000) ..."
+fi
+
+# Keep the caller's working directory: it becomes the active project folder.
+node "$SERVER_DIR/server.js"
