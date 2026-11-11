@@ -148,7 +148,6 @@ lioCode/
 ├── index.html      # UI, styling, agent loop and Puter.js integration
 ├── server.js       # zero-dependency local server and tools
 ├── liocode         # launcher, port selection and install helper
-├── setup.html      # standalone setup/help page
 ├── agent.js        # experimental terminal runner (optional)
 ├── package.json
 ├── README.md

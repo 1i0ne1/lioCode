@@ -48,7 +48,7 @@ while [[ $# -gt 0 ]]; do
             echo "Installing lioCode to $INSTALL_PROJECT_DIR ..."
             mkdir -p "$INSTALL_PROJECT_DIR"
             SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-            files=("liocode" "server.js" "agent.js" "index.html" "setup.html" "package.json" "README.md" "LICENSE")
+            files=("liocode" "server.js" "agent.js" "index.html" "package.json" "README.md" "LICENSE")
             for file in "${files[@]}"; do
                 if [[ -f "$SCRIPT_DIR/$file" ]]; then
                     cp "$SCRIPT_DIR/$file" "$INSTALL_PROJECT_DIR/"
